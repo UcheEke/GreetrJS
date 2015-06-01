@@ -13,7 +13,7 @@
     // Internal variables for use in resulting closure when this IIFE exits
     var supportedLangs = ['en', 'es'];
     
-    // The next few variables will allow messages to be accessed by language
+    // The next few variables will allow messages to be accessed by language 
     var greetings = {
         en : 'Hi',
         es : 'Hola',
@@ -31,23 +31,29 @@
     
     // All available Greetr methods will be placed in our custom prototype
     Greetr.prototype = {
+        // Provides the full name of the Greetr object
         fullName : function() {
                 return this.firstName + ' ' + this.lastName;
-            },
+        },
         
+        // Checks to ensure that the language selected is supported
         validate : function() {
                 if (supportedLangs.indexOf(this.language) === -1){
                     throw "Unsupported Language: " + this.language;   
                 }
-            },
+        },
+        
+        // Provides an informal greeting based on the firstName and the selected language
         greeting: function() {
                 return [greetings[this.language],this.firstName].join(' ') + '!';
-            },
+        },
         
+        // Provided a formal greeting form based on the full name and the language
         formalGreeting: function() {
                 return [formalGreetings[this.language],this.fullName()].join(', ') + '.';
-            },
+        },
         
+        // Generic greet call. Provides the user selected form of greeting (formal/informal)
         greet: function (formal) {
                 var msg;
                 if (formal) {
@@ -62,23 +68,51 @@
                 }
                 // This ensures that calling this function is a chainable action
                 return this;
-            },
+        },
         
+        // Produces a predefined message to the console based on the language and the current name
         log : function () {
                 if (console) {
-                    console.log(logMessages[this.language] = ': ' + this.fullName());
+                    console.log(logMessages[this.language] + ': ' + this.fullName());
                 }
                 return this;
         },
         
+        // Sets the language of the G$ object
         setLang : function(lang) {
             var oldLang = this.language;
             this.language = lang;
             this.validate();
             
             return this;
-        }
-                                
+        },
+        
+        // Includes jQuery support
+        jQGreet : function (selector, formal) {
+            
+            // Check that jQuery exists
+            if (!$) {
+                throw 'jQuery not loaded';
+            }
+            
+            if (!selector) {
+                throw 'No jQuery selector provided to jQGreet!'
+            }
+            
+            var msg;
+            
+            if (formal){
+                msg = this.formalGreeting();
+            } else {
+                msg = this.greeting();
+            }
+            
+            // update the selector
+            $(selector).html(msg);
+            
+            // make chainable
+            return this;
+        }                        
     };
     
     // Function Constructor for Greetr Object
@@ -90,6 +124,9 @@
         self.firstName = firstName || '';
         self.lastName = lastName || '';
         self.language = language || 'en';
+        
+        // Check that the given language is supported
+        self.validate();
         
     };
     
