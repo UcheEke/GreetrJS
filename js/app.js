@@ -1,3 +1,6 @@
-var defaultName = G$();
-var john = G$('john', 'doe');
-console.log(defaultName, john);
+var person = G$('John', 'Doe','en');
+
+person.greet();
+person.greet('formal');
+
+person.greet('formal').setLang('es').greet();
