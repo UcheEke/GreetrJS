@@ -10,7 +10,12 @@ person.greet('formal').setLang('es').greet();
 
 // Testing jQuery support
 $('#login').click(function() {
-    var loginGreetr = person;
+    var fname = $('#fname').val();
+    var lname = $('#lname').val();
+    var loginGreetr = G$(fname,lname);
+    var formal = $('#formality input:checked').val();
+    formal = Boolean(formal);
+    console.log(formal);
     $('logindiv').hide();
-    loginGreetr.setLang($('#lang').val()).jQGreet('#Greeting','formal').log();
+    loginGreetr.setLang($('#lang').val()).jQGreet('#Greeting',formal).log();
 });

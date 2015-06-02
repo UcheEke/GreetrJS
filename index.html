@@ -1,21 +1,49 @@
 <!doctype html>
 <html lang='en'>
-<head>
-    <meta charset="utf-8"/>
-    <title>Greetr Development</title>
-</head>
-<body>
-    <div id='logindiv'>
-        <select id='lang'>
-            <option value="en">English</option>
-            <option value="es">Spanish</option>
-        </select>
-        <input type='button' value='Login' id='login' />
-    </div>
-    
-    <h1 id='Greeting'></h1>
-    <script src='http://code.jquery.com/jquery-2.1.4.js'></script>
-    <script src='js/greetr.js'></script>
-    <script src='js/app.js'></script>
-</body>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Greetr Development</title>
+        <link href='http://fonts.googleapis.com/css?family=Bubblegum+Sans' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel='stylesheet' href='css/greetr.css'/>
+    </head>
+    <body>
+        <div class="well"><h3>Testing GreetrJS</h3><br/>
+            <small><a href='https://github.com/UcheEke/GreetrJS'>GreetrJS</a></small>
+        </div>
+
+        <div id='logindiv'>
+            <label class='form-control label label-default'>First Name:</label>
+            <input id='fname' class='form-control' type='text' placeholder="Enter your first name here" />
+            <br />
+            <label class='form-control label label-default'>Last Name:</label>
+            <input id='lname' class='form-control' type="text" placeholder="Enter your last name here" />
+            <br />
+            <label class='form-control label label-default'>Select Language:</label>
+            <select class ='form-control' id='lang'>
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+            </select>
+            <br/>
+            <div id='formality'>
+                <label class="label label-default radios radio-inline">
+                    <input type='radio' name='formality' value='true' checked/>
+                    Formal
+                </label>
+                <label class=" label label-default radios radio-inline">
+                    <input type='radio' name='formality' value=''/>
+                    Informal
+                </label>
+            </div>
+            <br />
+            <input class='btn btn-lg btn-primary btn-block' type='button' value='Create Greeting' id='login' />
+        </div>
+
+        <br />
+        <label class='form-control label label-primary'>Output</label>
+        <div class='well'><h3 id='Greeting'></h3></div>
+        <script src='http://code.jquery.com/jquery-2.1.4.js'></script>
+        <script src='js/greetr.js'></script>
+        <script src='js/app.js'></script>
+    </body>
 </html>
