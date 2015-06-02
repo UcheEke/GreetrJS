@@ -108,7 +108,7 @@
             }
             
             // update the selector
-            $(selector).html(msg);
+            $(selector).html(msg).fadeIn(600);
             
             // make chainable
             return this;
